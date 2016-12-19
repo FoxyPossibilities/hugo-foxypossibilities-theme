@@ -1,0 +1,12 @@
+name        = "Hugo Foxypossibilities Theme"
+license     = "MIT"
+licenselink = "https://github.com/FoxyPossibilities/hugo-foxypossibilities-theme/blob/master/LICENSE.md"
+description = "A theme for the Foxy Possibilities website"
+homepage    = "https://github.com/FoxyPossibilities/hugo-foxypossibilities-theme"
+tags        = ["blog"]
+features    = ["blog", "menu"]
+min_version = 0.15
+
+[author]
+  name = "KibaFox"
+  homepage = "http://www.foxypossibilities.com/"

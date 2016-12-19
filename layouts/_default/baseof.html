@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ .Hugo.Generator }}
+
+  <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+
+  <!--link href="/favicon.png" rel="icon"-->
+
+  <link rel="stylesheet" href="/css/theme.css">
+</head>
+<body>
+  <header>
+    <hgroup>
+    <h1 id="main-title">{{ .Site.Title }}</h1>
+    </hgroup>
+  </header>
+
+  <nav id="main-menu">
+    <ul>
+    {{ $currentNode := . }}
+    {{ range .Site.Menus.main }}
+      {{ if .HasChildren }}
+      <li class="dropdown{{ if $currentNode.IsMenuCurrent "main" . }} active{{ end }}">
+        <a href="{{ .URL }}">{{ .Pre }}{{ .Name }}</a>
+        <ul class="dropdown-content">
+          {{ range .Children }}
+          <li{{if $currentNode.IsMenuCurrent "main" . }} class="active"{{end}}>
+            <a href="{{.URL}}"> {{ .Name }} </a>
+          </li>
+          {{ end }}
+        </ul>
+      </li>
+      {{ else }}
+      <li{{ if $currentNode.IsMenuCurrent "main" . }} class="active"{{ end }}>
+        <a href="{{ .URL }}">{{ .Pre }}{{ .Name }}</a>
+      </li>
+      {{ end }}
+    {{ end }}
+    </ul>
+  </nav>
+
+  <hr>
+
+  <main>
+    <section>
+      {{ block "main" . }}{{ end }}
+    </section>
+  </main>
+
+  <footer>Copyright</footer>
+
+</body>
+</html>
+{{/* vim: set filetype=gohtmltmpl: */}}

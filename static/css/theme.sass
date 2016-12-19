@@ -1,0 +1,116 @@
+/* Gruvbox pallet
+  https://github.com/morhetz/gruvbox-contrib
+$bg0    : #f9f5d7
+$fg0    : #1d2021
+$gray   : #928374
+$red    : #9d0006
+$green  : #79740e
+$yellow : #b57614
+$blue   : #076678
+$purple : #8f3f71
+$aqua   : #427b58
+$orange : #af3a03
+
+@mixin link-colors($normal, $hover, $active, $visited, $focus)
+  color: $normal
+  &:hover
+    color: $hover
+  &:active
+    color: $active
+  &:visited
+    color: $visited
+  &:focus
+    color: $focus
+
+/* Normal link behavior - Shows which links were visited and underline on hover
+@mixin normal-link
+  +link-colors($blue, $purple, $red, $purple, $purple)
+  text-decoration: none
+  &:hover, &:focus
+    text-decoration: underline
+
+/* Fancy links - Does not show a different color when visited and no underline
+@mixin fancy-link
+  +link-colors($blue, $purple, $red, $blue, $purple)
+  text-decoration: none
+  &:hover, &:focus
+    text-decoration: none
+
+body
+  background-color: $bg0
+  color: $fg0
+  max-width: 45rem
+  line-height: 1.5
+  margin: 1em auto
+  padding: 0 .62em
+  font:
+    size: 1.2rem
+    family: sans-serif
+
+h1, h2, h3, h4, h5, h6
+  margin:
+    top: 0
+    bottom: 0.5rem
+  line-height: 1.4
+  font-family: serif
+  a
+    +fancy-link
+
+h1
+  font-size: 3rem
+
+h2
+  font-size: 2.5rem
+
+h3
+  font-size: 2rem
+
+h4
+  font-size: 1.5rem
+
+h5
+  font-size: 1.25rem
+
+h6
+  font-size: 1rem
+
+a
+  @include normal-link
+
+h1#main-title
+  font-family: fantasy, serif
+
+nav#main-menu
+  ul
+    margin: 0
+    padding: 0
+
+  li
+    display: inline
+    font-size: 1.5rem
+
+  a
+    @include fancy-link
+
+  .dropdown
+    position: relative
+    display: inline-block
+
+  .dropdown-content
+    display: none
+    position: absolute
+    background-color: #f9f9f9
+    min-width: 10rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0,0,0,0.2);
+    padding: 0.75rem 1rem;
+    z-index: 1;
+
+    li a
+      display: block
+
+  .dropdown:hover .dropdown-content
+    display: block
+
+@media print
+  body
+    max-width: none;

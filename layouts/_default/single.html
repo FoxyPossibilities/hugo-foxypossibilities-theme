@@ -1,0 +1,21 @@
+{{ define "title" }}
+  {{ .Title }} &ndash; {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+  {{ $baseurl := .Site.BaseURL }}
+  <article>
+    <header>
+      <h1>{{ .Title }}</h1>
+      <p>
+        Written
+        <time pubdate datetime="{{ .Date.Format "2013-03-15T00:00:00-04:00" }}">{{ .Date.Format "Mon Jan 2, 2006" }}</time>.
+      </p>
+    </header>
+    <div class="content">
+      {{ .Content }}
+    </div>
+    <footer>About the author...</footer>
+  </aside>
+{{ end }}
+{{/* vim: set filetype=gohtmltmpl: */}}

@@ -1,0 +1,17 @@
+{{ $baseurl := .Site.BaseURL }}
+<article>
+  <header>
+    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+    <p>
+      Written
+      <time pubdate datetime="{{ .Date.Format "2013-03-15T00:00:00-04:00" }}">{{ .Date.Format "Mon Jan 2, 2006" }}</time>.
+    </p>
+  </header>
+  <div class="content">
+    {{ .Summary }}
+  </div>
+  <nav>
+    <a href="{{ .Permalink }}" class="button">Read More</a>
+  </nav>
+</aside>
+{{/* vim: set filetype=gohtmltmpl: */}}
