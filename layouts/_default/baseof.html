@@ -10,15 +10,74 @@
 
   <!--link href="/favicon.png" rel="icon"-->
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.min.css">
   <link rel="stylesheet" href="/css/theme.css">
 </head>
 <body>
-  <header>
-    <hgroup>
-    <h1 id="main-title">{{ .Site.Title }}</h1>
-    </hgroup>
-  </header>
+  <section class="hero is-medium has-text-centered">
+    <div class="hero-head">
+      <div class="container">
+        <nav class="nav">
+          <div class="nav-left">
+            <a class="nav-item is-brand" href="/">
+              <span class="title">{{.Site.Title}}</span>
+            </a>
+          </div>
 
+          <!--
+          <div class="nav-center">
+            <a class="nav-item" href="https://github.com/FoxyPossibilities">
+              <span class="fa fa-github" />
+            </a>
+            <a class="nav-item" href="#">
+              <span class="fa fa-twitter" />
+            </a>
+          </div>
+          -->
+
+          <span id="nav-toggle" class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+
+          <div id="nav-menu" class="nav-right nav-menu">
+
+            {{ $currentNode := . }}
+            {{ range .Site.Menus.main }}
+            <a class="nav-item{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}} is-active{{ end }}"
+               href="{{.URL}}">{{.Pre}}{{.Name}}</a>
+            {{ end }}
+
+            <!--
+            <span class="nav-item">
+              <p class="control has-addons">
+                <input class="input" type="text" placeholder="Find a post">
+                <button class="button">Search</button>
+              </p>
+            </span>
+            -->
+          </div>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <nav class="level">
+    <div class="level-left">
+    </div>
+    <div class="level-right">
+      <div class="level-item">
+        <p class="control has-addons">
+          <input class="input" type="text" placeholder="Find a post">
+          <button class="button">Search</button>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+  <!--
   <nav id="main-menu">
     <ul>
     {{ $currentNode := . }}
@@ -42,8 +101,7 @@
     {{ end }}
     </ul>
   </nav>
-
-  <hr>
+  -->
 
   <main>
     <section>
@@ -51,8 +109,40 @@
     </section>
   </main>
 
-  <footer>Copyright</footer>
+  <footer class="footer">
+    <div class="container">
+      <div class="content">
+        Copyright
+      </div>
+    </div>
+  </footer>
 
+  <script>
+  (function() {
+    function toggleClass(el, className) {
+      if (el.classList) {
+        el.classList.toggle(className);
+      } else {
+        var classes = el.className.split(' ');
+        var existingIndex = classes.indexOf(className);
+
+        if (existingIndex >= 0)
+          classes.splice(existingIndex, 1);
+        else
+          classes.push(className);
+
+          el.className = classes.join(' ');
+      }
+    }
+
+    var navToggle = document.getElementById('nav-toggle');
+    var navMenu = document.getElementById('nav-menu');
+    navToggle.addEventListener("click", function(event) {
+      toggleClass(navToggle, 'is-active');
+      toggleClass(navMenu, 'is-active');
+    }, false);
+  })();
+  </script>
 </body>
 </html>
 {{/* vim: set filetype=gohtmltmpl: */}}
